@@ -28,6 +28,11 @@ public class EventoController {
 		return er.findAll();
 	}
 	
+	@GetMapping("/pesquisar/{id}")
+	public Optional<Evento> pesquisarId(@PathVariable Long id) {
+	   return er.findById(id);
+	}
+	
 	@PostMapping("/cadastro")
 	public String cadastro(@RequestBody Evento evento) {
 		er.save(evento);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.matheus.eventoapi.model.Evento;
 import br.com.matheus.eventoapi.model.Organizador;
 import br.com.matheus.eventoapi.repository.OrganizadorRepository;
 
@@ -26,6 +27,11 @@ public class OrganizadorController {
 	@GetMapping("/listar")
 	public List<Organizador> listar(){
 		return or.findAll();
+	}
+	
+	@GetMapping("/pesquisar/{id}")
+	public Optional<Organizador> pesquisarId(@PathVariable Long id) {
+	   return or.findById(id);
 	}
 	
 	@PostMapping("/cadastro")
@@ -46,7 +52,7 @@ public class OrganizadorController {
 		or.save(organizador);
 		return "Dados do organizador atualizado com sucesso";
 	}
-	@DeleteMapping("/apagar")
+	@DeleteMapping("/apagar/{id}")
 	public String apagar(@PathVariable Long id ) {
 		or.deleteById(id);
 		return "Organizador apagado";

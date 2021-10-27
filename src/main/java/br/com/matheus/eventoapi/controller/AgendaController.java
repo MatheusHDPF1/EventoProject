@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.matheus.eventoapi.model.Agenda;
+import br.com.matheus.eventoapi.model.Evento;
 import br.com.matheus.eventoapi.repository.AgendaRepository;
 
 @RestController
@@ -26,6 +27,11 @@ public class AgendaController {
       public List<Agenda> listar() {
     	  return ar.findAll();
       }
+      
+      @GetMapping("/pesquisar/{id}")
+  	  public Optional<Agenda> pesquisarId(@PathVariable Long id) {
+  	      return ar.findById(id);
+  	  }
       
       @PostMapping("/cadastro")
       public String cadastro(@RequestBody Agenda agenda ) {
