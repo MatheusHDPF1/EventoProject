@@ -53,7 +53,7 @@ public class EventoController {
 	    return " Dados do Evento atualizados com sucesso";		
 	  }
 	
-	@DeleteMapping("/apagar")
+	@DeleteMapping("/apagar/{id}")
 	public String apagar(@PathVariable Long id) {
 		er.deleteById(id);
 		return"Evento apagado";
